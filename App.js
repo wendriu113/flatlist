@@ -6,12 +6,12 @@ const Campeoes = [
   {
     id: 0,
     nome: 'Wendriu',
-    lancamento: '13 de dezembro de 2013',
-    genero: 'Mid/Top',
-    maestria: '240.817',
+    lancamento: 'Aproximadamente 2020',
+    genero: 'Jungle/ADC',
+    maestria: 'Ekko/Rengar',
     imagem: require('./assets/wendriu.jpg'),
-    sinopse: "Zed é um espadachim do jogo League of Legends. Ele usa vento para lutar, tem muita mobilidade e pode bloquear projéteis com uma parede de vento. É forte quando acerta combos e críticos, mas é difícil de jogar bem.",
-    url: "https://universe.leagueoflegends.com/pt_BR/story/champion/yasuo/"
+    sinopse: "Por que eu fiz isso com minha vida",
+    url: "https://op.gg/pt/lol/summoners/br/Wendriu-1208/mastery"
   },
   {
     id: 1,
@@ -79,17 +79,18 @@ export default function App() {
 
   const criaItem = ({ item }) => {
     const isWendriu = item.nome === 'Wendriu';
+    const isEkko = item.nome === 'Ekko';
 
     return (
       <TouchableOpacity 
         style={styles.listaItem} 
         onPress={() => 
           Alert.alert(
-            'Lore', 
+            isWendriu ? 'Perfil' : 'Lore', 
             item.sinopse, 
             [
               {
-                text: 'Ler Lore', 
+                text: isWendriu ? 'VER OP.GG' : 'Ler Lore', 
                 onPress: () => Linking.openURL(item.url), 
               },
               {
@@ -104,10 +105,10 @@ export default function App() {
 
         <View style={styles.listaDetalhes}>
           
-          <Text style={styles.textoForte}>{isWendriu ? 'Main atual: ' : 'Campeão: '}<Text style={styles.textoNormal}>{item.nome}</Text></Text>
+          <Text style={styles.textoForte}>{isWendriu ? 'Jogador: ' : 'Campeão: '}<Text style={styles.textoNormal}>{item.nome}</Text></Text>
           <Text style={styles.textoForte}>{isWendriu ? 'Joga desde: ' : 'Lançamento: '}<Text style={styles.textoNormal}>{item.lancamento}</Text></Text>
           <Text style={styles.textoForte}>{isWendriu ? 'Rotas preferidas: ' : 'Rota: '}<Text style={styles.textoNormal}>{item.genero}</Text></Text>
-          <Text style={styles.textoForte}>Maestria: <Text style={styles.textoNormal}>{item.maestria}</Text></Text>     
+          <Text style={styles.textoForte}>{isWendriu ? 'Main atual: ' : 'Maestria: '}<Text style={styles.textoNormal}>{item.maestria}</Text></Text>     
         </View>
 
       </TouchableOpacity>
